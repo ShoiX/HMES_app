@@ -3,7 +3,6 @@ package com.example.alaba.retrofittest.activities;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,13 +11,16 @@ import android.widget.TextView;
 
 import com.example.alaba.retrofittest.R;
 import com.example.alaba.retrofittest.fragments.HomeFragment;
+import com.example.alaba.retrofittest.fragments.RoomDetailFragment;
 import com.example.alaba.retrofittest.fragments.SettingsFragment;
-import com.example.alaba.retrofittest.fragments.UsersFragment;
+import com.example.alaba.retrofittest.fragments.UserFragment;
+import com.example.alaba.retrofittest.models.Room;
 import com.example.alaba.retrofittest.models.User;
 import com.example.alaba.retrofittest.storage.SPManager;
 
 public class ProfileActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     private TextView textView;
+    private RoomDetailFragment roomDetailFragment;
     private User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +29,7 @@ public class ProfileActivity extends AppCompatActivity implements BottomNavigati
 
         BottomNavigationView navigationView = findViewById(R.id.bottom_nav);
         navigationView.setOnNavigationItemSelectedListener(this);
-
+        roomDetailFragment = new RoomDetailFragment();
         displayFragment(new HomeFragment());
     }
 
@@ -59,7 +61,7 @@ public class ProfileActivity extends AppCompatActivity implements BottomNavigati
                 fragment = new HomeFragment();
                 break;
             case R.id.menu_users:
-                fragment = new UsersFragment();
+                fragment = new UserFragment();
                 break;
             case R.id.menu_settings:
                 fragment = new SettingsFragment();
@@ -69,5 +71,10 @@ public class ProfileActivity extends AppCompatActivity implements BottomNavigati
             displayFragment(fragment);
         }
         return false;
+    }
+
+    public void viewRoom(Room room){
+        roomDetailFragment.setCurRoom(room);
+        displayFragment(roomDetailFragment);
     }
 }

@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.example.alaba.retrofittest.R;
 
-public class UsersFragment extends Fragment {
+public class UserFragment extends Fragment {
 
     @Nullable
     @Override
