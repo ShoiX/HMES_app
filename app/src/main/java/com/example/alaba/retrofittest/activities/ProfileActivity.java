@@ -45,11 +45,11 @@ public class ProfileActivity extends AppCompatActivity implements BottomNavigati
     protected void onStart() {
         super.onStart();
 
-        if (!SPManager.getInstance(this).isLogged()){
+        /*if (!SPManager.getInstance(this).isLogged()){
             Intent intent = new Intent(this, SignUpActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
-        }
+        }*/
     }
 
     @Override

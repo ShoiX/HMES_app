@@ -29,6 +29,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         inputPassword = findViewById(R.id.editTextPassword);
         findViewById(R.id.buttonLogin).setOnClickListener(this);
         findViewById(R.id.textViewRegister).setOnClickListener(this);
+        findViewById(R.id.ButtonBrowseNow).setOnClickListener(this);
     }
 
     @Override
@@ -38,6 +39,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 userLogin();
                 break;
             case R.id.textViewRegister:
+                startActivity(new Intent(this, SignUpActivity.class));
+                break;
+            case R.id.ButtonBrowseNow:
+                startActivity(new Intent(this, ProfileActivity.class)
+                        .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                 break;
         }
     }
@@ -47,7 +53,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onStart();
 
         if (SPManager.getInstance(this).isLogged()){
-            Intent intent = new Intent(LoginActivity.this, ProfileActivity.class);
+            Intent intent = new Intent(this, ProfileActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         }
