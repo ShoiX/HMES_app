@@ -19,6 +19,7 @@ import com.example.alaba.retrofittest.models.User;
 import com.example.alaba.retrofittest.storage.SPManager;
 
 public class ProfileActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+
     private TextView textView;
     private RoomDetailFragment roomDetailFragment;
     private User user;
@@ -27,9 +28,12 @@ public class ProfileActivity extends AppCompatActivity implements BottomNavigati
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        /* SET UP bottom navigation */
         BottomNavigationView navigationView = findViewById(R.id.bottom_nav);
         navigationView.setOnNavigationItemSelectedListener(this);
         roomDetailFragment = new RoomDetailFragment();
+
+        // default fragment, Home Fragment
         displayFragment(new HomeFragment());
     }
 
@@ -74,6 +78,7 @@ public class ProfileActivity extends AppCompatActivity implements BottomNavigati
     }
 
     public void viewRoom(Room room){
+        // open a room on Room Detail Fragment
         roomDetailFragment.setCurRoom(room);
         displayFragment(roomDetailFragment);
     }

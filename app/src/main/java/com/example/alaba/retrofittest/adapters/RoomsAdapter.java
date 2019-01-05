@@ -18,11 +18,13 @@ import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.example.alaba.retrofittest.R;
 import com.example.alaba.retrofittest.activities.ProfileActivity;
+import com.example.alaba.retrofittest.configs.Server;
 import com.example.alaba.retrofittest.fragments.HomeFragment;
 import com.example.alaba.retrofittest.models.Room;
 
 import java.util.List;
 
+/* ADAPTER CLASS FOR THE RECYCLERVIEW OF ROOMS */
 public class RoomsAdapter extends RecyclerView.Adapter<RoomsAdapter.RoomsViewHolder> {
 
     private Context mCtx;
@@ -58,9 +60,9 @@ public class RoomsAdapter extends RecyclerView.Adapter<RoomsAdapter.RoomsViewHol
             }
         });
 
-        // load image and set to background
+        // load image from the server and set to background
         Glide.with(mCtx)
-                .load("http://192.168.254.107/HMES/hmes/" + room.getPhoto())
+                .load(Server.SYSTEM_ADDRESS + room.getPhoto())
                 .asBitmap()
                 .into(new SimpleTarget<Bitmap>() {
                     @Override
@@ -71,7 +73,7 @@ public class RoomsAdapter extends RecyclerView.Adapter<RoomsAdapter.RoomsViewHol
                         room.setBmphoto(bm);
                     }
                 });
-        //roomsViewHolder.cardviewBG.setBackground();
+
     }
 
     @Override
